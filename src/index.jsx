@@ -24,21 +24,6 @@ class TypeWriter extends React.Component {
     clearInterval(this._timeoutId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const next = nextProps.typing;
-    const active = this.props.typing;
-
-    if (active > 0 && next < 0) {
-      this.setState({
-        visibleChars: this.state.visibleChars - 1
-      });
-    } else if (active <= 0 && next > 0) {
-      this.setState({
-        visibleChars: this.state.visibleChars + 1
-      });
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return true
 
@@ -105,11 +90,11 @@ class TypeWriter extends React.Component {
   }
 
   _handleTimeout() {
-    const {typing} = this.props;
-    const {visibleChars} = this.state;
+    const increment = this.props.isTyping ? 1 : 0;
+    const { visibleChars } = this.state;
 
     this.setState({
-      visibleChars: visibleChars + typing
+      visibleChars: visibleChars + increment
     });
   }
 }
@@ -124,13 +109,7 @@ TypeWriter.propTypes = {
     ]),
     delay: PropTypes.number
   })),
-  typing(props, propName) {
-    const prop = props[propName];
-
-    if (!(Number(prop) === prop && prop % 1 === 0) || (prop < -1 || prop > 1)) {
-      return new Error('typing property must be an integer between 1 and -1');
-    }
-  },
+  isTyping: PropTypes.bool,
   maxDelay: PropTypes.number,
   minDelay: PropTypes.number,
   onTypingEnd: PropTypes.func,
@@ -138,7 +117,7 @@ TypeWriter.propTypes = {
 };
 
 TypeWriter.defaultProps = {
-  typing: 0,
+  isTyping: false,
   initDelay: 1000,
   maxDelay: 100,
   minDelay: 20

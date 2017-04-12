@@ -760,22 +760,6 @@ var TypeWriter = function (_React$Component) {
       clearInterval(this._timeoutId);
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var next = nextProps.typing;
-      var active = this.props.typing;
-
-      if (active > 0 && next < 0) {
-        this.setState({
-          visibleChars: this.state.visibleChars - 1
-        });
-      } else if (active <= 0 && next > 0) {
-        this.setState({
-          visibleChars: this.state.visibleChars + 1
-        });
-      }
-    }
-  }, {
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
       return true;
@@ -854,12 +838,12 @@ var TypeWriter = function (_React$Component) {
   }, {
     key: '_handleTimeout',
     value: function _handleTimeout() {
-      var typing = this.props.typing;
+      var increment = this.props.isTyping ? 1 : 0;
       var visibleChars = this.state.visibleChars;
 
 
       this.setState({
-        visibleChars: visibleChars + typing
+        visibleChars: visibleChars + increment
       });
     }
   }]);
@@ -873,14 +857,7 @@ TypeWriter.propTypes = {
     at: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number, _propTypes2.default.instanceOf(RegExp)]),
     delay: _propTypes2.default.number
   })),
-  typing: function typing(props, propName) {
-    var prop = props[propName];
-
-    if (!(Number(prop) === prop && prop % 1 === 0) || prop < -1 || prop > 1) {
-      return new Error('typing property must be an integer between 1 and -1');
-    }
-  },
-
+  isTyping: _propTypes2.default.bool,
   maxDelay: _propTypes2.default.number,
   minDelay: _propTypes2.default.number,
   onTypingEnd: _propTypes2.default.func,
@@ -888,7 +865,7 @@ TypeWriter.propTypes = {
 };
 
 TypeWriter.defaultProps = {
-  typing: 0,
+  isTyping: false,
   initDelay: 1000,
   maxDelay: 100,
   minDelay: 20
