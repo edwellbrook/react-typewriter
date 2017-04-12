@@ -39,6 +39,8 @@ class TypeWriter extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    return true
+
     const { children } = this.props;
     const nextChildren = nextProps.children;
     const childrenAreStrings = typeof children === 'string' && typeof nextChildren === 'string';

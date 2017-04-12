@@ -116,6 +116,9 @@ export var componentTokenAt = (() => {
   let _index;
 
   function findComponentTokenAt(component) {
+    if (component.props == null) {
+      return;
+    }
 
     let { children } = component.props;
     let childCount = React.Children.count(children);
@@ -133,7 +136,7 @@ export var componentTokenAt = (() => {
       if (typeof child !== 'string') {
 
         // treat Stamp components as a single token.
-        if (child.props.stamp) {
+        if (child.props && child.props.stamp) {
           if (!_index) {
             token = child;
           } else {
