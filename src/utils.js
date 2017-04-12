@@ -3,17 +3,17 @@ import React from 'react';
 // Enclosing scope for local state variables.
 export var styleComponentSubstring = (() => {
 
-  let _start,
-      _end,
-      _styles,
-      _index;
+  let _start;
+  let _end;
+  let _styles;
+  let _index;
 
   // Will deep clone the component tree, wrapping any text within
   // the start/end with a styled span.
   function alterComponent(component) {
 
-    let {children, stamp, style} = component.props,
-        cloneProps;
+    let { children, stamp, style } = component.props;
+    let cloneProps;
 
     if (stamp) {
 
@@ -117,15 +117,14 @@ export var componentTokenAt = (() => {
 
   function findComponentTokenAt(component) {
 
-    let {children} = component.props,
-        childCount = React.Children.count(children),
-        token;
+    let { children } = component.props;
+    let childCount = React.Children.count(children);
+    let childIndex = 0;
+    let token;
 
     if (childCount <= 1) {
       children = [children];
     }
-
-    let childIndex = 0;
 
     while (!token && childIndex < childCount) {
 
