@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack-dev-server --port 3000"
+    "dev": "webpack-dev-server"
   },
   "keywords": [
     "animated",
@@ -14,6 +14,9 @@
     "component"
   ],
   "author": "Ian Dilling <ianbjorndilling@gmail.com>",
+  "files": [
+    "dist/index.js"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
