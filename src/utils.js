@@ -13,19 +13,7 @@ export var styleComponentSubstring = (() => {
   function alterComponent(component) {
 
     let { children, stamp, style } = component.props;
-    let cloneProps;
-
-    if (stamp) {
-
-      if (_index >= _start && (!_end || _index < _end)) {
-        cloneProps = {
-          style: React.addons.update(style || {}, {$merge: _styles})
-        };
-      }
-      _index++;
-    } else {
-      cloneProps = {children: React.Children.map(children, alterChild)};
-    }
+    let cloneProps = {children: React.Children.map(children, alterChild)};
 
     if (cloneProps) {
       return React.cloneElement(component, cloneProps);
@@ -134,19 +122,7 @@ export var componentTokenAt = (() => {
       let child = children[childIndex++];
 
       if (typeof child !== 'string') {
-
-        // treat Stamp components as a single token.
-        if (child.props && child.props.stamp) {
-          if (!_index) {
-            token = child;
-          } else {
-            _index--;
-          }
-
-        } else {
-          token = findComponentTokenAt(child);
-        }
-
+        token = findComponentTokenAt(child);
       } else if (_index - child.length < 0) {
         token = child.charAt(_index);
       } else {

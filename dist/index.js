@@ -502,19 +502,7 @@ var styleComponentSubstring = exports.styleComponentSubstring = function () {
         stamp = _component$props.stamp,
         style = _component$props.style;
 
-    var cloneProps = void 0;
-
-    if (stamp) {
-
-      if (_index >= _start && (!_end || _index < _end)) {
-        cloneProps = {
-          style: _react2.default.addons.update(style || {}, { $merge: _styles })
-        };
-      }
-      _index++;
-    } else {
-      cloneProps = { children: _react2.default.Children.map(children, alterChild) };
-    }
+    var cloneProps = { children: _react2.default.Children.map(children, alterChild) };
 
     if (cloneProps) {
       return _react2.default.cloneElement(component, cloneProps);
@@ -621,17 +609,7 @@ var componentTokenAt = exports.componentTokenAt = function () {
       var child = children[childIndex++];
 
       if (typeof child !== 'string') {
-
-        // treat Stamp components as a single token.
-        if (child.props && child.props.stamp) {
-          if (!_index) {
-            token = child;
-          } else {
-            _index--;
-          }
-        } else {
-          token = findComponentTokenAt(child);
-        }
+        token = findComponentTokenAt(child);
       } else if (_index - child.length < 0) {
         token = child.charAt(_index);
       } else {
