@@ -7,7 +7,7 @@ Installation
 ------------
 
 ```
-npm install --save react-typewriter
+npm install --save edwellbrook/react-typewriter
 ```
 
 Usage
@@ -144,4 +144,4 @@ This function can be called in order to *erase* the text immediately.
 License
 -------
 
-[MIT](https://github.com/ianbjorndilling/react-typewriter/blob/master/LICENSE.md)
+The MIT License (MIT)
