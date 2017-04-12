@@ -1,5 +1,5 @@
 import React from 'react';
-import {styleComponentSubstring, componentTokenAt} from '../utils';
+import { styleComponentSubstring, componentTokenAt } from './utils';
 
 /**
  * TypeWriter
@@ -93,14 +93,8 @@ class TypeWriter extends React.Component {
   }
 
   render() {
-    const {
-      children,
-      fixed,
-      ...props
-    } = this.props;
-    const {
-      visibleChars
-    } = this.state;
+    const { children, fixed, ...props } = this.props;
+    const { visibleChars } = this.state;
     const container = <span {...props}>{children}</span>;
     const hideStyle = fixed ? {visibility: 'hidden'} : {display: 'none'};
 

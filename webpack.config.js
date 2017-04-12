@@ -1,8 +1,8 @@
+const path = require('path')
+
 module.exports = {
   entry: './src',
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
+
   externals: {
     react: {
       root: 'React',
@@ -11,17 +11,27 @@ module.exports = {
       commonjs2: 'react'
     }
   },
+
   output: {
-    path: './build',
-    filename: 'react-typewriter.js',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'index.js',
     library: 'TypeWriter',
     libraryTarget: 'umd'
   },
+
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /(node_modules)/,
-      loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-rest-spread,plugins[]=add-module-exports'
+      loader: 'babel-loader',
+      options: {
+        presets: ['es2015', 'react'],
+        plugins: ['transform-object-rest-spread', 'add-module-exports']
+      }
     }]
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx']
   }
-};
+}
