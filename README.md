@@ -13,19 +13,19 @@ npm install --save edwellbrook/react-typewriter
 Usage
 -------------
 
-Pass in children to the TypeWriter component like any other component. Make sure to set the `typing` property to 1 when you want the component to begin animating.
+Pass in children to the TypeWriter component like any other component. Make sure to set the `isTyping` property to `true` when you want the component to begin animating.
 
 ```jsx
-import React from 'react';
-import TypeWriter from 'react-typewriter';
+import React from 'react'
+import TypeWriter from 'react-typewriter'
 
 class YourReactClass extends React.Component {
 
   render() {
     return (
       // Passing in text.
-      <TypeWriter typing={1}>Hello World!</TypeWriter>
-    );
+      <TypeWriter isTyping={true}>Hello World!</TypeWriter>
+    )
   }
 
 }
@@ -34,7 +34,7 @@ class YourReactClass extends React.Component {
 You can also pass in other components such as anchor tags and spans.
 
 ```jsx
-<TypeWriter typing={1}>
+<TypeWriter isTyping={true}>
   Hello
   <span style={{color: 'blue'}}>World</span>
   !
@@ -48,12 +48,12 @@ Documentation
 
 ### TypeWriter
 
-#### props.typing
+#### props.isTyping
 
-type: `Integer`
-default: `0`
+type: `Boolean`
+default: `false`
 
-A value of 1 will cause the component type text left to right until completion. A value of -1 will cause the component to *erase* text right to left.
+This flag will turn the typing effect on and off.
 
 #### props.initDelay
 
@@ -118,21 +118,6 @@ type: `Function`
 default: `none`
 
 This callback is called once the typing animation has completed. This is when all text has been either revealed or erased.
-
-### props.stamp
-
-type: `Boolean`
-
-This property should be set on any TypeWriter child components that should be treated as a single token or stamp. The text inside a component with the `stamp` property will not be typed out, but will be revealed all at once.
-
-Here, `World!` will be stamped onto the page instead of typed out:
-
-```jsx
-<TypeWriter typing={1}>
-  Hello
-  <span stamp>World!</span>
-</TypeWriter>
-```
 
 ### refs.reset
 
