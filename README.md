@@ -3,7 +3,7 @@
 A react component for animated typing text.
 
 
-## Installation
+## Installation
 
 ```
 yarn add edwellbrook/react-typewriter
