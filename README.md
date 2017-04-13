@@ -1,17 +1,16 @@
-react-typewriter
-================
+# react-typewriter
 
 A react component for animated typing text.
 
-Installation
-------------
+
+## Installation
 
 ```
-npm install --save edwellbrook/react-typewriter
+yarn add edwellbrook/react-typewriter
 ```
 
-Usage
--------------
+
+## Basic Usage
 
 Pass in children to the TypeWriter component like any other component. Make sure to set the `isTyping` property to `true` when you want the component to begin animating.
 
@@ -23,7 +22,7 @@ class YourReactClass extends React.Component {
 
   render() {
     return (
-      // Passing in text.
+      // Passing in text
       <TypeWriter isTyping={true}>Hello World!</TypeWriter>
     )
   }
@@ -31,20 +30,10 @@ class YourReactClass extends React.Component {
 }
 ```
 
-You can also pass in other components such as anchor tags and spans.
-
-```jsx
-<TypeWriter isTyping={true}>
-  Hello
-  <span style={{color: 'blue'}}>World</span>
-  !
-</TypeWriter>
-```
-
 Child components can be nested as deep as necessary. Text is typed out as each character appears in a pre-order traversal of the nested structure.
 
-Documentation
--------------
+
+## Documentation
 
 ### TypeWriter
 
@@ -126,7 +115,6 @@ type: `Function`
 This function can be called in order to *erase* the text immediately and restart the animation.
 
 
-License
--------
+## License
 
 The MIT License (MIT)
