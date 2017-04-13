@@ -1,11 +1,12 @@
 {
-  "name": "react-typewriter",
+  "name": "@edwellbrook/react-typewriter",
   "version": "0.5.0",
   "description": "React components for automatic typing effects.",
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack --watch -p"
+    "dev": "webpack --watch -p",
+    "prepublish": "webpack -p"
   },
   "keywords": [
     "animated",
@@ -13,7 +14,7 @@
     "react",
     "component"
   ],
-  "author": "Ian Dilling <ianbjorndilling@gmail.com>",
+  "author": "Ed Wellbrook <edwellbrook@gmail.com>",
   "files": [
     "dist/index.js"
   ],
