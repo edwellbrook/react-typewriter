@@ -25,26 +25,21 @@ class TypeWriter extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return true
-
-    const { children } = this.props;
+    const children = this.props.children;
     const nextChildren = nextProps.children;
-    const childrenAreStrings = typeof children === 'string' && typeof nextChildren === 'string';
-    // TODO Implement childrenChanged for non-string children as well
-    const childrenChanged = childrenAreStrings && children !== nextChildren;
+    const childrenChanged = children !== nextChildren;
     const visibleCharsChanged = this.state.visibleChars !== nextState.visibleChars;
 
     return (visibleCharsChanged || childrenChanged);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {
-      maxDelay,
-      minDelay,
-      delayMap,
-      onTypingEnd,
-      onTyped
-    } = this.props;
+    if (prevProps.children != this.props.children) {
+      this.restart()
+      return
+    }
+
+    const { maxDelay, minDelay, delayMap, onTypingEnd, onTyped } = this.props;
     const token = componentTokenAt(this, prevState.visibleChars);
     const nextToken = componentTokenAt(this, this.state.visibleChars);
 
@@ -74,9 +69,12 @@ class TypeWriter extends React.Component {
     }
   }
 
-  reset() {
+  restart() {
+    clearInterval(this._timeoutId);
     this.setState({
       visibleChars: 0
+    }, () => {
+      this._timeoutId = setTimeout(this._handleTimeout, this.props.initDelay);
     });
   }
 

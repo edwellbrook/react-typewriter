@@ -119,11 +119,11 @@ default: `none`
 
 This callback is called once the typing animation has completed. This is when all text has been either revealed or erased.
 
-### refs.reset
+### refs.restart
 
 type: `Function`
 
-This function can be called in order to *erase* the text immediately.
+This function can be called in order to *erase* the text immediately and restart the animation.
 
 
 License

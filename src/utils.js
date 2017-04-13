@@ -113,7 +113,7 @@ export var componentTokenAt = (() => {
     let childIndex = 0;
     let token;
 
-    if (childCount <= 1) {
+    if (!Array.isArray(children)) {
       children = [children];
     }
 
