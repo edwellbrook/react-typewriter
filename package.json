@@ -1,6 +1,6 @@
 {
   "name": "@edwellbrook/react-typewriter",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React components for automatic typing effects.",
   "main": "./dist/index.js",
   "scripts": {
